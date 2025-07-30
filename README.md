@@ -26,7 +26,7 @@ A sleek Flutter application that fetches and displays random programming jokes u
 
 | APP | ScreenShots |
 
-|----------|------------|
+|------------------------------------------------------------------------------------------------------------------------------------|
 
 <img width="200" height="400" alt="Screenshot 2025-07-30 at 9 26 24 AM" src="https://github.com/user-attachments/assets/90304a85-49c1-4d47-9c69-65a782790758" />
 <img src="https://github.com/user-attachments/assets/f7d3894b-e49b-42bf-bb52-a4011905b488" width="200" height="400" alt="Light Mode Animation"/>
