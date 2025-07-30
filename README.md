@@ -1,4 +1,4 @@
-# 🧠 Random Jokes App
+# 🃏 Random Jokes App
 
 A sleek Flutter application that fetches and displays random programming jokes using clean architecture and state management (GetX). Built with responsiveness, readability, and fun in mind!-----
 
