@@ -31,14 +31,10 @@ A sleek Flutter application that fetches and displays random programming jokes u
 
 <img src="https://github.com/user-attachments/assets/f7d3894b-e49b-42bf-bb52-a4011905b488" width="200" height="400" alt="Light Mode Animation"/>
 
-lib/
-├── app_widgets/         # Reusable widgets (e.g., buttons)
-├── const/               # Constants (padding, colors, typography)
-├── controller/          # GetX controllers (e.g., JokeController)
-├── model/               # Data models (e.g., JokeModel)
-├── services/            # API service classes
-├── state/               # State classes (e.g., JokeState)
-└── screens/             # UI screens (e.g., JokeScreen)
+##🧱 Project Structure
+
+<img width="300" height="220" alt="Screenshot 2025-07-30 at 9 22 27 AM" src="https://github.com/user-attachments/assets/70bc5e8a-7567-46f1-94f4-16fb2675e5c7" />
+
 
 
 ## 📜 License
