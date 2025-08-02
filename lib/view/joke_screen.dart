@@ -17,17 +17,31 @@ class JokeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Random Joke")),
-      body: Center(
-        child: Obx(() {
-          final state = _controller.state.value;
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFD0EBDD),
+              Color(0xFFFFE0B2),
+              Color(0xFFEBD4D4),
+            ],
+          ),
+        ),
+        child: Center(
+          child: Obx(() {
+            final state = _controller.state.value;
 
-          if (state is Loading) return _buildLoading();
-          if (state is Success) return _buildJoke(state.joke);
-          if (state is Error) return _buildError(state.message);
+            if (state is Loading) return _buildLoading();
+            if (state is Success) return _buildJoke(state.joke);
+            if (state is Error) return _buildError(state.message);
 
-          return SizedBox(); // default if state is null
-        }),
+            return SizedBox();
+          }),
+        ),
       ),
     );
   }
@@ -42,15 +56,16 @@ class JokeScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '${joke.setup}\n\n${joke.punchline}',
-            textAlign: TextAlign.center,
-            style: AppTypography.kRegular14.copyWith(fontSize: 18.sp),
-          ),
+          Text(joke.setup,
+              textAlign: TextAlign.center,
+              style: AppTypography.kSemiBold18.copyWith(fontSize: 24.sp)),
+          10.vSpace,
+          Text(joke.punchline,
+              style: AppTypography.kSemiBold16.copyWith(fontSize: 18.sp)),
           20.vSpace,
           PrimaryButton(
             text: 'Get Another',
-            onTap: Get.find<JokeController>().fetchJoke,
+            onTap: Get.find<JokeController>().fetchPreviousJoke,
           )
         ],
       ),
