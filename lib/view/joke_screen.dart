@@ -59,7 +59,7 @@ class JokeScreen extends StatelessWidget {
           Text(joke.setup,
               textAlign: TextAlign.center,
               style: AppTypography.kSemiBold18.copyWith(fontSize: 24.sp)),
-          10.vSpace,
+          30.vSpace,
           Text(joke.punchline,
               style: AppTypography.kSemiBold16.copyWith(fontSize: 18.sp)),
           20.vSpace,
