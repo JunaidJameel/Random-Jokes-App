@@ -8,33 +8,45 @@ class JokeController extends GetxController {
 
   final Rxn<JokeState> state = Rxn<JokeState>();
 
-  final List<JokeModel> _jokeHistory = [];
-  int _currentIndex = -1;
+  List<JokeModel> jokeHistory = [];
+
+  int _currentIndex = 0;
 
   @override
   void onInit() {
     super.onInit();
-    fetchJoke(); // initially loads the first joke
+    fetchJokeBatch(); // initially loads the first joke
   }
 
-  void fetchJoke() async {
+  void fetchJokeBatch() async {
     state.value = Loading();
 
     try {
-      final joke = await _jokeService.fetchJokes();
-      _jokeHistory.add(joke);
+      jokeHistory = await _jokeService.fetchMultipleJokes();
+      _currentIndex = 0;
       _currentIndex++;
-      state.value = Success(joke);
+      state.value = Success(jokeHistory[_currentIndex]);
     } catch (e) {
-      state.value = Error("Oops, couldn't fetch jokes");
+      state.value = Error("Oops, couldn't load jokes");
+    }
+  }
+
+  void nextJoke() {
+    if (_currentIndex < jokeHistory.length - 1) {
+      _currentIndex++;
+
+      state.value = Success(jokeHistory[_currentIndex]);
+    } else {
+      // Re-fetch the next batch of jokes
+      fetchJokeBatch();
     }
   }
 
   void fetchPreviousJoke() {
     if (_currentIndex > 0) {
       _currentIndex--;
-      final previousJoke = _jokeHistory[_currentIndex];
-      state.value = Success(previousJoke);
+
+      state.value = Success(jokeHistory[_currentIndex]);
     }
   }
 }

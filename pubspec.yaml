@@ -26,6 +26,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   google_fonts: ^6.2.1
   shimmer: ^3.0.0
+  flutter_card_swiper: ^7.0.2
 
 
 
