@@ -35,8 +35,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
               onSwipe: _onSwipe,
               onUndo: _onUndo,
               numberOfCardsDisplayed: 3,
-              backCardOffset: const Offset(40, 40),
-              padding: const EdgeInsets.all(24.0),
+              backCardOffset: const Offset(20, 0),
               cardBuilder: (
                 context,
                 index,
@@ -46,39 +45,6 @@ class _JokeSwiperState extends State<JokeSwiper> {
                   cards[index],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Wrap(
-              spacing: 12,
-              children: [
-                FloatingActionButton(
-                  onPressed: controller.undo,
-                  heroTag: 'undo',
-                  child: const Icon(Icons.rotate_left),
-                ),
-                FloatingActionButton(
-                  onPressed: () => controller.swipe(CardSwiperDirection.left),
-                  heroTag: 'left',
-                  child: const Icon(Icons.keyboard_arrow_left),
-                ),
-                FloatingActionButton(
-                  onPressed: () => controller.swipe(CardSwiperDirection.right),
-                  heroTag: 'right',
-                  child: const Icon(Icons.keyboard_arrow_right),
-                ),
-                FloatingActionButton(
-                  onPressed: () => controller.swipe(CardSwiperDirection.top),
-                  heroTag: 'top',
-                  child: const Icon(Icons.keyboard_arrow_up),
-                ),
-                FloatingActionButton(
-                  onPressed: () => controller.swipe(CardSwiperDirection.bottom),
-                  heroTag: 'down',
-                  child: const Icon(Icons.keyboard_arrow_down),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );
@@ -86,6 +52,8 @@ class _JokeSwiperState extends State<JokeSwiper> {
 
   Widget _buildJokeCard(JokeModel joke) {
     return Container(
+      height: 400,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -97,7 +65,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
           )
         ],
       ),
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -124,30 +92,16 @@ class _JokeSwiperState extends State<JokeSwiper> {
   }
 
   bool _onSwipe(
-    int previousIndex,
-    int? currentIndex,
-    CardSwiperDirection direction,
-  ) {
+      int previousIndex, int? currentIndex, CardSwiperDirection direction) {
     debugPrint(
       'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
     );
-
-    // Auto-load new jokes if we hit the last one
-    if (previousIndex == jokeController.jokeHistory.length - 1) {
-      jokeController.fetchJokeBatch();
-    }
 
     return true;
   }
 
   bool _onUndo(
-    int? previousIndex,
-    int currentIndex,
-    CardSwiperDirection direction,
-  ) {
-    debugPrint(
-      'The card $currentIndex was undone from the ${direction.name}',
-    );
+      int? previousIndex, int currentIndex, CardSwiperDirection direction) {
     return true;
   }
 }

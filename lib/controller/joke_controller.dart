@@ -41,12 +41,4 @@ class JokeController extends GetxController {
       fetchJokeBatch();
     }
   }
-
-  void fetchPreviousJoke() {
-    if (_currentIndex > 0) {
-      _currentIndex--;
-
-      state.value = Success(jokeHistory[_currentIndex]);
-    }
-  }
 }
