@@ -29,26 +29,29 @@ class _JokeSwiperState extends State<JokeSwiper> {
 
     return Padding(
       padding: kPagePadding * 2 / 1.2,
-      child: Column(
-        children: [
-          Flexible(
-            child: CardSwiper(
-              controller: controller,
-              cardsCount: cards.length,
-              onSwipe: _onSwipe,
-              onUndo: _onUndo,
-              numberOfCardsDisplayed: 3,
-              backCardOffset: const Offset(0, 30),
-              cardBuilder: (
-                context,
-                index,
-                horizontalThresholdPercentage,
-                verticalThresholdPercentage,
-              ) =>
-                  cards[index],
+      child: SizedBox(
+        height: 400.h,
+        child: Column(
+          children: [
+            Flexible(
+              child: CardSwiper(
+                controller: controller,
+                cardsCount: cards.length,
+                onSwipe: _onSwipe,
+                onUndo: _onUndo,
+                numberOfCardsDisplayed: 3,
+                backCardOffset: const Offset(0, 30),
+                cardBuilder: (
+                  context,
+                  index,
+                  horizontalThresholdPercentage,
+                  verticalThresholdPercentage,
+                ) =>
+                    cards[index],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

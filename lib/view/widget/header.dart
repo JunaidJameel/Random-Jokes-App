@@ -52,36 +52,62 @@ class HeaderWidget extends StatelessWidget {
   }
 
   Widget _buildChangeCategory() {
+    final controller = Get.find<JokeController>();
+
     return Obx(() {
-      final controller = Get.find<JokeController>();
       final selectedCategory = controller.currentCategory.value;
+      final isExpanded = controller.isTileExpanded.value;
 
-      return ExpansionTile(
-        title: Text(
-          selectedCategory.name.capitalizeFirst ?? '',
-          style: AppTypography.kSemiBold18.copyWith(color: AppColors.kBlack),
-        ),
-        children: JokeCategory.values.map((category) {
-          final isSelected = category == selectedCategory;
-
-          return ListTile(
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // The "title" of the tile
+          ListTile(
             title: Text(
-              category.name.capitalizeFirst ?? '',
-              style: AppTypography.kRegular14.copyWith(
-                fontSize: 16.sp,
-                color: isSelected ? Colors.red : AppColors.kBlack,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              ),
+              selectedCategory.name.capitalizeFirst ?? '',
+              style:
+                  AppTypography.kSemiBold18.copyWith(color: AppColors.kBlack),
+            ),
+            trailing: Icon(
+              isExpanded ? Icons.expand_less : Icons.expand_more,
             ),
             onTap: () {
-              // only fetch if changed
-              if (!isSelected) {
-                controller.fetchJokeBatch(category: category);
-              }
-              Get.back(); // collapse tile (optional, or use custom UI)
+              controller.isTileExpanded.toggle();
             },
-          );
-        }).toList(),
+          ),
+
+          // The "expanding" section
+          AnimatedCrossFade(
+            firstChild: Container(),
+            secondChild: Column(
+              children: JokeCategory.values.map((category) {
+                final isSelected = category == selectedCategory;
+
+                return ListTile(
+                  title: Text(
+                    category.name.capitalizeFirst ?? '',
+                    style: AppTypography.kRegular14.copyWith(
+                      fontSize: 16.sp,
+                      color: isSelected ? Colors.red : AppColors.kBlack,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
+                  onTap: () {
+                    if (!isSelected) {
+                      controller.fetchJokeBatch(category: category);
+                    }
+                    controller.isTileExpanded.value = false;
+                  },
+                );
+              }).toList(),
+            ),
+            crossFadeState: isExpanded
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+            duration: const Duration(milliseconds: 300),
+          ),
+        ],
       );
     });
   }

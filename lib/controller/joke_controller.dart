@@ -11,9 +11,11 @@ class JokeController extends GetxController {
 
   List<JokeModel> jokeHistory = [];
 
-  int _currentIndex = 0;
+  int _currentIndex =
+      0; // Stores jokes fetched in the current batch. Also Tracks which joke from jokeHistory is currently being shown.
 
   final Rx<JokeCategory> currentCategory = JokeCategory.programming.obs;
+  var isTileExpanded = false.obs;
 
   @override
   void onInit() {
@@ -31,7 +33,6 @@ class JokeController extends GetxController {
         category: currentCategory.value,
       );
       _currentIndex = 0;
-      _currentIndex++;
       state.value = Success(jokeHistory[_currentIndex]);
     } catch (e) {
       state.value = Error("Oops, couldn't load jokes");

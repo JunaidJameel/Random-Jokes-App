@@ -4,7 +4,9 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
 
 import 'package:random_jokes/const/app_utils.dart';
+import 'package:random_jokes/const/enum/joke_category.dart';
 import 'package:random_jokes/const/extensions/extension_sizebox.dart';
+import 'package:random_jokes/const/gradient.dart';
 import 'package:random_jokes/controller/joke_controller.dart';
 import 'package:random_jokes/state/joke_State.dart';
 import 'package:random_jokes/view/widget/header.dart';
@@ -18,29 +20,33 @@ class JokeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFD0EBDD),
-              Color(0xFFFFE0B2),
-              Color(0xFFEBD4D4),
-            ],
+      body: Obx(
+        () => Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: JokeCategoryGradients.getGradient(
+                    _controller.currentCategory.value)),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                HeaderWidget(),
+                Obx(() {
+                  final state = _controller.state.value;
+
+                  if (state is Loading) return _buildLoading();
+                  if (state is Success) return _buildBody();
+                  if (state is Error) return _buildError(state.message);
+
+                  return SizedBox();
+                }),
+              ],
+            ),
           ),
         ),
-        child: Obx(() {
-          final state = _controller.state.value;
-
-          if (state is Loading) return _buildLoading();
-          if (state is Success) return _buildBody();
-          if (state is Error) return _buildError(state.message);
-
-          return SizedBox();
-        }),
       ),
     );
   }
@@ -73,12 +79,7 @@ class JokeScreen extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Column(
-      children: [
-        HeaderWidget(),
-        Expanded(child: JokeSwiper()),
-      ],
-    );
+    return JokeSwiper();
   }
 
   Widget _buildError(String message) {
