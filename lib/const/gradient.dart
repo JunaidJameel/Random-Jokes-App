@@ -12,21 +12,21 @@ class JokeCategoryGradients {
         ];
       case JokeCategory.general:
         return [
-          Color(0xFFE1F5FE),
+          Color(0xFFDDDAD0),
           Color(0xFFB3E5FC),
-          Color(0xFF81D4FA),
+          Color(0xFF58A0C8),
         ];
       case JokeCategory.random:
         return [
-          Color(0xFFEDE7F6),
-          Color(0xFFD1C4E9),
+          Color(0xFFF5CBCB),
+          Color(0xFFFFEAEA),
           Color(0xFFB39DDB),
         ];
       case JokeCategory.knockKnock:
         return [
           Color(0xFFFFF9C4),
-          Color(0xFFFFE082),
-          Color(0xFFFF7043),
+          Color(0xFFF9CB99),
+          Color(0xFF689B8A),
         ];
     }
   }
