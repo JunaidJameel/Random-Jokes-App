@@ -59,7 +59,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(30),
         boxShadow: const [
           BoxShadow(
             color: Colors.black26,
@@ -96,7 +96,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
 
   bool _onSwipe(
       int previousIndex, int? currentIndex, CardSwiperDirection direction) {
-    jokeController.nextJoke();
+    jokeController.nextBunchOfJokes();
 
     return true;
   }

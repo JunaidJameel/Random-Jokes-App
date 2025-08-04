@@ -17,3 +17,18 @@ extension JokeCategoryExtension on JokeCategory {
     }
   }
 }
+
+extension JokeCategoryLabel on JokeCategory {
+  String get label {
+    switch (this) {
+      case JokeCategory.random:
+        return 'Random';
+      case JokeCategory.general:
+        return 'General';
+      case JokeCategory.programming:
+        return 'Programming';
+      case JokeCategory.knockKnock:
+        return 'Knock Knock';
+    }
+  }
+}
