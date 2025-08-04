@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:random_jokes/const/app_utils.dart';
 import 'package:random_jokes/controller/joke_controller.dart';
 import 'package:random_jokes/model/joke_model.dart';
 
@@ -25,7 +27,8 @@ class _JokeSwiperState extends State<JokeSwiper> {
   Widget build(BuildContext context) {
     final cards = jokeController.jokeHistory.map(_buildJokeCard).toList();
 
-    return SafeArea(
+    return Padding(
+      padding: kPagePadding * 2 / 1.2,
       child: Column(
         children: [
           Flexible(
@@ -35,7 +38,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
               onSwipe: _onSwipe,
               onUndo: _onUndo,
               numberOfCardsDisplayed: 3,
-              backCardOffset: const Offset(20, 0),
+              backCardOffset: const Offset(0, 30),
               cardBuilder: (
                 context,
                 index,
@@ -52,7 +55,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
 
   Widget _buildJokeCard(JokeModel joke) {
     return Container(
-      height: 400,
+      height: 400.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -93,9 +96,7 @@ class _JokeSwiperState extends State<JokeSwiper> {
 
   bool _onSwipe(
       int previousIndex, int? currentIndex, CardSwiperDirection direction) {
-    debugPrint(
-      'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
-    );
+    jokeController.nextJoke();
 
     return true;
   }

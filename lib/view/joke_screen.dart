@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
-import 'package:random_jokes/app_widgets/buttons/primary_button.dart';
-import 'package:random_jokes/const/app_typography.dart';
+
 import 'package:random_jokes/const/app_utils.dart';
+import 'package:random_jokes/const/extensions/extension_sizebox.dart';
 import 'package:random_jokes/controller/joke_controller.dart';
-import 'package:random_jokes/model/joke_model.dart';
 import 'package:random_jokes/state/joke_State.dart';
+import 'package:random_jokes/view/widget/header.dart';
 import 'package:random_jokes/view/widget/joke_swiper_card.dart';
+import 'package:shimmer/shimmer.dart';
 
 class JokeScreen extends StatelessWidget {
   JokeScreen({super.key});
@@ -31,27 +32,53 @@ class JokeScreen extends StatelessWidget {
             ],
           ),
         ),
-        child: Center(
-          child: Obx(() {
-            final state = _controller.state.value;
+        child: Obx(() {
+          final state = _controller.state.value;
 
-            if (state is Loading) return _buildLoading();
-            if (state is Success) return _buildJoke();
-            if (state is Error) return _buildError(state.message);
+          if (state is Loading) return _buildLoading();
+          if (state is Success) return _buildBody();
+          if (state is Error) return _buildError(state.message);
 
-            return SizedBox();
-          }),
-        ),
+          return SizedBox();
+        }),
       ),
     );
   }
 
   Widget _buildLoading() {
-    return const CircularProgressIndicator();
+    return Center(
+      child: Padding(
+        padding: kPagePadding * 2,
+        child: Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            height: 400.h,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10,
+                  offset: Offset(0, 5),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget _buildJoke() {
-    return JokeSwiper();
+  Widget _buildBody() {
+    return Column(
+      children: [
+        HeaderWidget(),
+        Expanded(child: JokeSwiper()),
+      ],
+    );
   }
 
   Widget _buildError(String message) {
@@ -61,11 +88,7 @@ class JokeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(message, style: const TextStyle(color: Colors.red)),
-          const SizedBox(height: 20),
-          // PrimaryButton(
-          //   text: 'Retry One more',
-          //   onTap: Get.find<JokeController>().fetchJoke,
-          // )
+          20.vSpace,
         ],
       ),
     );
