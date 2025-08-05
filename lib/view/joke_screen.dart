@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
+import 'package:lottie/lottie.dart';
+import 'package:random_jokes/const/app_colors.dart';
+import 'package:random_jokes/const/app_typography.dart';
 
 import 'package:random_jokes/const/app_utils.dart';
 import 'package:random_jokes/const/enum/joke_category.dart';
 import 'package:random_jokes/const/extensions/extension_sizebox.dart';
 import 'package:random_jokes/const/gradient.dart';
 import 'package:random_jokes/controller/joke_controller.dart';
+import 'package:random_jokes/gen/assets.gen.dart';
 import 'package:random_jokes/state/joke_State.dart';
 import 'package:random_jokes/view/widget/header.dart';
 import 'package:random_jokes/view/widget/joke_swiper_card.dart';
@@ -38,7 +42,7 @@ class JokeScreen extends StatelessWidget {
                   final state = _controller.state.value;
 
                   if (state is Loading) return _buildLoading();
-                  if (state is Success) return _buildBody();
+                  if (state is Success) return _buildJokeCard();
                   if (state is Error) return _buildError(state.message);
 
                   return SizedBox();
@@ -53,32 +57,22 @@ class JokeScreen extends StatelessWidget {
 
   Widget _buildLoading() {
     return Center(
-      child: Padding(
-        padding: kPagePadding * 2,
-        child: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            height: 400.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 10,
-                  offset: Offset(0, 5),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        child: Padding(
+            padding: const EdgeInsets.all(120.0),
+            child: Lottie.asset(
+              Assets.lottie.loading,
+              delegates: LottieDelegates(
+                values: [
+                  ValueDelegate.color(
+                    const ['**'],
+                    value: AppColors.kBlack,
+                  ),
+                ],
+              ),
+            )));
   }
 
-  Widget _buildBody() {
+  Widget _buildJokeCard() {
     return JokeSwiper();
   }
 
@@ -88,7 +82,8 @@ class JokeScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(message, style: const TextStyle(color: Colors.red)),
+          Text(message,
+              style: AppTypography.kSemiBold16.copyWith(color: Colors.red)),
           20.vSpace,
         ],
       ),

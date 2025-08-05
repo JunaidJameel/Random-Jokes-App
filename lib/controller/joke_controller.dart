@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:random_jokes/const/enum/joke_category.dart';
 import 'package:random_jokes/services/joke_service.dart';
 import 'package:random_jokes/state/joke_State.dart';
 import 'package:random_jokes/model/joke_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JokeController extends GetxController {
   final JokeService _jokeService = JokeService();
@@ -20,13 +22,20 @@ class JokeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchJokeBatch(); // initially loads the first joke
+    _initializeCategoryAndFetchJokes();
+  }
+
+  void _initializeCategoryAndFetchJokes() async {
+    final savedCategory = await loadSavedCategory();
+    currentCategory.value = savedCategory;
+    fetchJokeBatch(category: savedCategory);
   }
 
   void fetchJokeBatch({JokeCategory? category}) async {
     state.value = Loading();
     if (category != null) {
       currentCategory.value = category;
+      await saveSelectedCategory(category);
     }
     try {
       jokeHistory = await _jokeService.fetchMultipleJokes(
@@ -48,5 +57,20 @@ class JokeController extends GetxController {
       // Re-fetch the next batch of jokes
       fetchJokeBatch();
     }
+  }
+
+  // save SelectedCategory to local db via Shared Preferences
+
+  Future<void> saveSelectedCategory(JokeCategory category) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString('selectedCategory', category.name);
+  }
+
+  Future<JokeCategory> loadSavedCategory() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getString('selectedCategory');
+    return JokeCategory.values.firstWhere((e) => e.name == saved,
+        orElse: () => JokeCategory.programming);
   }
 }

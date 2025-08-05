@@ -20,13 +20,10 @@ class HeaderWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             20.vSpace,
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                'Jokes',
-                style: AppTypography.kRegular10
-                    .copyWith(color: AppColors.kBlack, fontSize: 22.sp),
-              ),
+            Text(
+              'Jokes',
+              style: AppTypography.kRegular10
+                  .copyWith(color: AppColors.kBlack, fontSize: 22.sp),
             ),
             _buildChangeCategory(),
             10.vSpace,
@@ -63,6 +60,7 @@ class HeaderWidget extends StatelessWidget {
         children: [
           // The "title" of the tile
           ListTile(
+            contentPadding: EdgeInsets.all(0),
             title: Text(
               selectedCategory.name.capitalizeFirst ?? '',
               style:
@@ -105,7 +103,7 @@ class HeaderWidget extends StatelessWidget {
             crossFadeState: isExpanded
                 ? CrossFadeState.showSecond
                 : CrossFadeState.showFirst,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 280),
           ),
         ],
       );
