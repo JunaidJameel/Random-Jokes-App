@@ -36,6 +36,7 @@ A sleek Flutter application that fetches and displays random programming jokes u
 
 
 ## 🧱 Project Structure
+<img width="391" height="242" alt="Screenshot 2025-08-05 at 2 16 46 PM" src="https://github.com/user-attachments/assets/7ab27675-2e81-4558-b785-1f56e755fbbd" />
 
 
 
