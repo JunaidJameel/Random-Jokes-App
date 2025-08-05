@@ -58,9 +58,7 @@ If you liked this project, consider giving it a ⭐ and sharing it with others.
 
 ## ☕ Support My Work
 
-If you like the app, consider becoming a sponsor. It will allow me to stay motivated to work on open-source projects.
-
-Alternatively, you can also make a one-time donation:
+consider becoming a sponsor 👇. It will allow me to stay motivated to work on open-source projects.
 
 <p align="left">
   <a href="https://patreon.com/JunaidJameel" target="_blank">
