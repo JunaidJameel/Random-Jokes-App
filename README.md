@@ -31,14 +31,12 @@ A sleek Flutter application that fetches and displays random programming jokes u
 
 <img width="200" height="400" alt="Screenshot 2025-08-05 at 12 43 11 PM" src="https://github.com/user-attachments/assets/f4b40fe2-1322-492a-ba53-3b4aed84afa1" />
 
+![ball-21050_256](https://github.com/user-attachments/assets/1f5cd01d-168c-49f7-a244-2282d4507cea)
 
-
-Uploading vid.mov…
 
 
 ## 🧱 Project Structure
 
-<img width="700" height="220" alt="Screenshot 2025-07-30 at 9 22 27 AM" src="https://github.com/user-attachments/assets/70bc5e8a-7567-46f1-94f4-16fb2675e5c7" />
 
 
 
