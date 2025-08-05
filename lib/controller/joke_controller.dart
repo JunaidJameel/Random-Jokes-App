@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:random_jokes/const/enum/joke_category.dart';
 import 'package:random_jokes/services/joke_service.dart';
 import 'package:random_jokes/state/joke_State.dart';

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:random_jokes/const/app_utils.dart';
+import 'package:random_jokes/const/extensions/extension_sizebox.dart';
 import 'package:random_jokes/controller/joke_controller.dart';
+import 'package:random_jokes/gen/assets.gen.dart';
 import 'package:random_jokes/model/joke_model.dart';
 
 class JokeSwiper extends StatefulWidget {
@@ -61,6 +64,15 @@ class _JokeSwiperState extends State<JokeSwiper> {
       height: 400.h,
       width: double.infinity,
       decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/bg.png'),
+          fit: BoxFit.fill,
+          opacity: .1,
+          colorFilter: ColorFilter.mode(
+            Colors.amber[50]!, // your desired tint color
+            BlendMode.dstATop,
+          ),
+        ),
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
         boxShadow: const [
@@ -71,23 +83,23 @@ class _JokeSwiperState extends State<JokeSwiper> {
           )
         ],
       ),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          30.vSpace,
           Text(
             joke.setup,
-            style: const TextStyle(
-              fontSize: 22,
+            style: GoogleFonts.robotoSlab(
+              fontSize: 20.sp,
               fontWeight: FontWeight.w600,
             ),
-            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 20),
+          30.vSpace,
           Text(
             joke.punchline,
-            style: const TextStyle(
-              fontSize: 18,
+            style: GoogleFonts.dmSans(
+              fontSize: 18.sp,
               color: Colors.black87,
             ),
             textAlign: TextAlign.center,

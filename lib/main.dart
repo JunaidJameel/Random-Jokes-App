@@ -1,11 +1,22 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:random_jokes/const/app_theme.dart';
 import 'package:random_jokes/view/joke_screen.dart';
 
+// void main() {
+//   runApp(const MyApp());
+// }
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app here
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
