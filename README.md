@@ -1,6 +1,6 @@
 # 🃏 Random Jokes App
 
-A sleek Flutter application that fetches and displays random programming jokes using clean architecture and state management (GetX). Built with responsiveness, readability, and fun in mind!-----
+A sleek Flutter application that fetches and displays random jokes !
 
 ## ✨ Features
 
@@ -63,4 +63,15 @@ This project is licensed under the MIT License. See the [LICENSE].
 
 If you liked this project, consider giving it a ⭐ and sharing it with others.
 
-> © 2025 Junaid Jameel – All rights reserved.
+## ☕ Support My Work
+
+If you like the app, consider becoming a sponsor. It will allow me to stay motivated to work on open-source projects.
+
+Alternatively, you can also make a one-time donation:
+
+<p align="left">
+  <a href="https://patreon.com/JunaidJameel" target="_blank">
+    <img src="https://img.shields.io/badge/Patreon-Support-red?logo=patreon" alt="Support on Patreon"/>
+  </a>
+</p>
+
