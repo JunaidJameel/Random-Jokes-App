@@ -23,7 +23,7 @@ A sleek Flutter application that fetches and displays random programming jokes u
 
 ## 📸 Screenshots
 
-| APP | ScreenShots |
+| APP ScreenShots| GIF |
 
 |------------------------------------------------------------|
 
