@@ -4,19 +4,18 @@ A sleek Flutter application that fetches and displays random programming jokes u
 
 ## ✨ Features
 
-🔁 Fetches random programming jokes from a public API
+🔁 Fetches random jokes from a public API named official-joke-api.
 
-⚙️ Clean state management using GetX (Loading, Success, Error)
+🏆 4 Categories of Jokes. User can select any category.
 
-✅ Proper use of JokeModel for API response handling
+⚙️ Clean state management using GetX (Loading, Success, Error) state handling.
+
+✅ Selected category will be saved in local db until user change it from app.
 
 🧪 Organized architecture with clear separation of concerns (UI, Controller, Model, Service)
 
 📱 Responsive UI with flutter_screenutil
 
-🎨 Beautiful typography using Google Fonts
-
-💥 Custom buttons and consistent design with Shimmer effects
 
 
 
@@ -31,6 +30,10 @@ A sleek Flutter application that fetches and displays random programming jokes u
 <img width="200" height="400" alt="Screenshot 2025-08-05 at 12 38 49 PM" src="https://github.com/user-attachments/assets/17d1c446-f0f4-485d-93d9-e2740f81b727" />
 
 <img width="200" height="400" alt="Screenshot 2025-08-05 at 12 43 11 PM" src="https://github.com/user-attachments/assets/f4b40fe2-1322-492a-ba53-3b4aed84afa1" />
+
+
+
+Uploading vid.mov…
 
 
 ## 🧱 Project Structure
