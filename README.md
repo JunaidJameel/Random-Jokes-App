@@ -40,13 +40,6 @@ A sleek Flutter application that fetches and displays random jokes !
 
 
 
-
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE].
-
----
-
 ## 🧑‍💻 Author
 
 ### Junaid Jameel
